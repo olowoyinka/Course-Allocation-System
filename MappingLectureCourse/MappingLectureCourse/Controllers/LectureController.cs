@@ -2,6 +2,7 @@
 using MappingLectureCourse.Interface;
 using MappingLectureCourse.Models.EntryViewModel;
 using MappingLectureCourse.Models.MappingViewModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -15,6 +16,7 @@ using System.Threading.Tasks;
 
 namespace MappingLectureCourse.Controllers
 {
+    [Authorize(Policy = "RequireAccess")]
     public class LectureController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -37,6 +39,7 @@ namespace MappingLectureCourse.Controllers
         }
 
 
+        [HttpGet]
         public async Task<IActionResult> Index(string search, int pageindex = 1)
         {
             var user = await GetCurrentUserAsync();
@@ -60,7 +63,7 @@ namespace MappingLectureCourse.Controllers
                                     || (s.Designation.Name.Contains(search)) ));
             }
 
-            var model = PagingList.Create(await courses.OrderByDescending(s => s.LectureID).ToListAsync(), 10, pageindex);
+            var model = PagingList.Create(await courses.OrderByDescending(s => s.LectureID).ToListAsync(), 5, pageindex);
 
             return View(model);
         }

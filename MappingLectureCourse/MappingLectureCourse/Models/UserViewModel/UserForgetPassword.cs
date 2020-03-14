@@ -12,6 +12,7 @@ namespace MappingLectureCourse.Models.UserViewModel
 
         [Required]
         [Compare("Newpassword", ErrorMessage = "The password and confirmation password do not match.")]
+        [DataType(DataType.Password)]
         [Display(Name = "Enter Confirm Password")]
         public string confirmNewPassword { get; set; }
     }

@@ -144,7 +144,6 @@ C:\Users\olowoyinka\source\repos\MappingLectureCourse\MappingLectureCourse\obj\D
 C:\Users\olowoyinka\source\repos\MappingLectureCourse\MappingLectureCourse\obj\Debug\netcoreapp3.0\Razor\Views\Users\ChangeUserPassword.cshtml.g.cs
 C:\Users\olowoyinka\source\repos\MappingLectureCourse\MappingLectureCourse\obj\Debug\netcoreapp3.0\Razor\Views\Users\ForgotUserPassword.cshtml.g.cs
 C:\Users\olowoyinka\source\repos\MappingLectureCourse\MappingLectureCourse\obj\Debug\netcoreapp3.0\Razor\Views\Users\Index.cshtml.g.cs
-C:\Users\olowoyinka\source\repos\MappingLectureCourse\MappingLectureCourse\obj\Debug\netcoreapp3.0\Razor\Views\Users\LoginUser.cshtml.g.cs
 C:\Users\olowoyinka\source\repos\MappingLectureCourse\MappingLectureCourse\obj\Debug\netcoreapp3.0\Razor\Views\Users\RegisterUser.cshtml.g.cs
 C:\Users\olowoyinka\source\repos\MappingLectureCourse\MappingLectureCourse\obj\Debug\netcoreapp3.0\Razor\Views\Users\UpdateUserInfo.cshtml.g.cs
 C:\Users\olowoyinka\source\repos\MappingLectureCourse\MappingLectureCourse\obj\Debug\netcoreapp3.0\Razor\Views\_ViewImports.cshtml.g.cs
@@ -168,8 +167,8 @@ C:\Users\olowoyinka\source\repos\MappingLectureCourse\MappingLectureCourse\bin\D
 C:\Users\olowoyinka\source\repos\MappingLectureCourse\MappingLectureCourse\bin\Debug\netcoreapp3.0\Rotativa.AspNetCore.dll
 C:\Users\olowoyinka\source\repos\MappingLectureCourse\MappingLectureCourse\obj\Debug\netcoreapp3.0\MappingLectureCourse.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\olowoyinka\source\repos\MappingLectureCourse\MappingLectureCourse\obj\Debug\netcoreapp3.0\MappingLectureCourse.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\olowoyinka\source\repos\MappingLectureCourse\MappingLectureCourse\obj\Debug\netcoreapp3.0\Razor\Views\Course\Delete.cshtml.g.cs
-C:\Users\olowoyinka\source\repos\MappingLectureCourse\MappingLectureCourse\obj\Debug\netcoreapp3.0\Razor\Views\Department\Delete.cshtml.g.cs
-C:\Users\olowoyinka\source\repos\MappingLectureCourse\MappingLectureCourse\obj\Debug\netcoreapp3.0\Razor\Views\ResearchArea\Delete.cshtml.g.cs
-C:\Users\olowoyinka\source\repos\MappingLectureCourse\MappingLectureCourse\obj\Debug\netcoreapp3.0\Razor\Views\Session\Delete.cshtml.g.cs
-C:\Users\olowoyinka\source\repos\MappingLectureCourse\MappingLectureCourse\obj\Debug\netcoreapp3.0\Razor\Views\Lecture\Delete.cshtml.g.cs
+C:\Users\olowoyinka\source\repos\MappingLectureCourse\MappingLectureCourse\obj\Debug\netcoreapp3.0\Razor\Views\Shared\_Mapping.cshtml.g.cs
+C:\Users\olowoyinka\source\repos\MappingLectureCourse\MappingLectureCourse\obj\Debug\netcoreapp3.0\Razor\Views\Shared\_LoginPartial.cshtml.g.cs
+C:\Users\olowoyinka\source\repos\MappingLectureCourse\MappingLectureCourse\obj\Debug\netcoreapp3.0\Razor\Views\Shared\_CookieConsentPartial.cshtml.g.cs
+C:\Users\olowoyinka\source\repos\MappingLectureCourse\MappingLectureCourse\obj\Debug\netcoreapp3.0\Razor\Views\Shared\_RolePartial.cshtml.g.cs
+C:\Users\olowoyinka\source\repos\MappingLectureCourse\MappingLectureCourse\obj\Debug\netcoreapp3.0\Razor\Views\Home\AccessDenied.cshtml.g.cs

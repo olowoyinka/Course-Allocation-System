@@ -69,3 +69,66 @@ body {
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
 }
+
+.sidebar {
+    background-color: #343a40;
+}
+
+.white {
+    color: white;
+}
+
+.status {
+    background-color: #EDEEF3;
+}
+
+.area {
+    background-color: #1F5A7D;
+}
+
+.names {
+    background-color: #EBEAEA;
+    color: #707070;
+}
+
+.plain {
+    color: #707070;
+}
+
+button {
+    background-color: #334753;
+    outline: none;
+    border: none;
+}
+
+.lecturers {
+    font-size: 21px;
+}
+
+.help {
+    font-size: 12px;
+}
+
+.fa-angle-down {
+    font-size: 15px;
+}
+
+.input {
+    border: 2px solid #334753;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.add {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.home_panel {
+    height: 650px;
+    background-color: #EDEEF3;
+}

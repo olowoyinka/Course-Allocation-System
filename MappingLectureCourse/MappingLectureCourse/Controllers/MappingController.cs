@@ -2,12 +2,12 @@
 using MappingLectureCourse.Interface;
 using MappingLectureCourse.Models.EntryViewModel;
 using MappingLectureCourse.Models.MappingViewModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ReflectionIT.Mvc.Paging;
-using Rotativa.AspNetCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 
 namespace MappingLectureCourse.Controllers
 {
+    [Authorize(Policy = "RequireAccess")]
     public class MappingController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
@@ -174,8 +175,15 @@ namespace MappingLectureCourse.Controllers
 
 
         //Let it be PDF
+
         public async Task<IActionResult> PrintMapping(string semesterID, string SessionID)
         {
+            if(semesterID == null || SessionID == null)
+            {
+                return RedirectToAction("HistoryofMapping", new { Message = MessageNote.Add });
+            }
+
+
             var user = await GetCurrentUserAsync();
 
             var getUser = await _userManager.Users
@@ -222,7 +230,8 @@ namespace MappingLectureCourse.Controllers
             var user = await GetCurrentUserAsync();
 
             ViewData["Exist"] =
-                message == MessageNote.Exist ? "Allocation of Lecture to their Courses Generated;"
+                message == MessageNote.Exist ? "Allocation of Lecture to their Courses Generated;":
+                message == MessageNote.Add ? "Select One of the Record"
                 : "";
 
             var model = PagingList.Create(await _mappingService.HistoyofMapping(user.DepartmentID), 10, pageindex);

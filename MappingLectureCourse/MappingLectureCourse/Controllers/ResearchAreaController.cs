@@ -1,6 +1,7 @@
 ﻿using MappingLectureCourse.Data;
 using MappingLectureCourse.Interface;
 using MappingLectureCourse.Models.MappingViewModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -12,6 +13,7 @@ using System.Threading.Tasks;
 
 namespace MappingLectureCourse.Controllers
 {
+    [Authorize(Policy = "RequireAccess")]
     public class ResearchAreaController : Controller
     {
         private readonly IResearchArea _researchAreaService;
@@ -43,7 +45,7 @@ namespace MappingLectureCourse.Controllers
                                             && s.Name.Contains(search));
             }
 
-            var model = PagingList.Create(await researchAreas.OrderByDescending(s => s.ResearchAreaID).ToListAsync(), 10, pageindex);
+            var model = PagingList.Create(await researchAreas.OrderByDescending(s => s.ResearchAreaID).ToListAsync(), 5, pageindex);
 
             return View(model);
         }

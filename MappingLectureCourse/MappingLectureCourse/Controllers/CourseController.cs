@@ -1,6 +1,7 @@
 ﻿using MappingLectureCourse.Data;
 using MappingLectureCourse.Interface;
 using MappingLectureCourse.Models.MappingViewModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -11,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace MappingLectureCourse.Controllers
 {
+    [Authorize(Policy = "RequireAccess")]
     public class CourseController : Controller
     {
         private readonly ICourse _courseService;
@@ -32,7 +34,7 @@ namespace MappingLectureCourse.Controllers
         {
             var user = await GetCurrentUserAsync();
 
-            var model = PagingList.Create(await _courseService.getAllCourse(user.DepartmentID, Search), 10, pageindex);
+            var model = PagingList.Create(await _courseService.getAllCourse(user.DepartmentID, Search), 5, pageindex);
 
             return View(model);
         }

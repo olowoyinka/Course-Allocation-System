@@ -1,0 +1,111 @@
+﻿body {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+}
+
+.mini-background {
+    height: 100vh;
+    width: 100%;
+    background: linear-gradient( rgba(0,0,0,0.3), rgba(0,0,0,0.3) ), url(../images/flower_vase.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #ffffff;
+}
+
+.background-text {
+    margin-top: 43vh;
+}
+
+    .background-text h1 {
+        font-family: 'Montserrat';
+        color: #FFFFFF;
+        font-weight: bolder;
+        font-size: 38px;
+    }
+
+    .background-text p {
+        font-family: 'Montserrat';
+        color: #FFFFFF;
+        font-size: 20px;
+    }
+
+.register-text {
+    margin-top: 60px;
+    margin-bottom: 40px;
+}
+
+    .register-text h1 {
+        font-size: 40px;
+        font-family: 'Montserrat';
+        font-weight: bolder;
+        color: #333333;
+    }
+
+    .register-text p {
+        font-size: 16;
+        font-family: 'Montserrat';
+        font-weight: 200;
+        color: #333333;
+    }
+
+.input-item-container {
+    margin-bottom: 30px;
+}
+
+    .input-item-container p {
+        color: #716C6C;
+        font-family: 'Montserrat';
+        font-weight: normal;
+        font-size: 13px;
+        margin-bottom: 0.2rem;
+    }
+
+.name-text {
+    width: 100%;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid #828282;
+    height: 28px;
+}
+
+.register-button button {
+    background-color: #B11226;
+    color: #FFFFFF;
+    font-family: 'Montserrat';
+    font-size: 13px;
+    border: none;
+    padding: 8px 35px 8px 35px;
+    border-radius: 3px;
+    margin-bottom: 10px;
+}
+
+.account-question p {
+    font-family: 'Montserrat';
+    font-size: 12px;
+    color: #716C6C;
+}
+
+    .account-question p span a {
+        color: #B11226;
+        text-decoration: none;
+    }
+
+/* Sign-In Stylings */
+.forgot-password p a {
+    color: #716C6C;
+    text-decoration: none;
+    font-family: 'Montserrat';
+    font-size: 12px;
+}
+
+
+
+/*Media Query*/
+@media(max-width:990px) {
+    .mini-background {
+        display: none;
+    }
+}

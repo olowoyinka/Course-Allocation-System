@@ -35,6 +35,7 @@ namespace MappingLectureCourse.Controllers
             _logger = loggerFactory.CreateLogger<UsersController>();
         }
 
+        [Authorize(Policy = "AdminAccess")]
         public async Task<IActionResult> Index(string search, MessageNote? message = null, int pageindex = 1)
         {
             var users = from m in _userManager.Users
@@ -52,13 +53,13 @@ namespace MappingLectureCourse.Controllers
                message == MessageNote.Exist ? "New User Registered"
                : "";
 
-            var model = PagingList.Create(await users.OrderByDescending(s => s.Id).ToListAsync(), 10, pageindex);
+            var model = PagingList.Create(await users.OrderByDescending(s => s.Id).ToListAsync(), 5, pageindex);
 
             return View(model);
         }
 
         [HttpGet]
-        [AllowAnonymous]
+        [Authorize(Policy = "AdminAccess")]
         public IActionResult RegisterUser()
         {
             listItem();
@@ -67,7 +68,7 @@ namespace MappingLectureCourse.Controllers
         }
 
         [HttpPost]
-        [AllowAnonymous]
+        [Authorize(Policy = "AdminAccess")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> RegisterUser(UserRegister userRegister)
         {
@@ -99,51 +100,6 @@ namespace MappingLectureCourse.Controllers
             return View(userRegister);
         }
 
-
-        [HttpGet]
-        [AllowAnonymous]
-        public async Task<IActionResult> LoginUser()
-        {
-            await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
-
-            return View();
-        }
-
-
-        [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> LoginUser(UserLogin userLogin)
-        {
-            if (ModelState.IsValid)
-            {
-                var user = await _userManager.FindByEmailAsync(userLogin.email);
-
-                var result = await _signInManager.PasswordSignInAsync(userLogin.email, 
-                                                                        userLogin.password, userLogin.RememberMe, 
-                                                                        lockoutOnFailure: false);
-
-                if (result.Succeeded)
-                {
-                    if (!(await _userManager.IsEmailConfirmedAsync(user)))
-                    {
-                        return RedirectToAction("ChangeUserPassword");
-                    }
-
-                    _logger.LogInformation(1, "User logged in.");
-
-                    return RedirectToAction(nameof(MappingController.Index), "Mapping");
-                }
-                else
-                {
-                    ModelState.AddModelError(string.Empty, "InCorrect Username or Password");
-                    return View(userLogin);
-                }
-            }
-
-            return View(userLogin);
-        }
-
         
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -158,6 +114,7 @@ namespace MappingLectureCourse.Controllers
 
 
         [HttpGet]
+        [Authorize(Policy = "AdminAccess")]
         public async Task<IActionResult> UpdateUserInfo(string Id, MessageNote? message = null)
         {
             var user = await _userManager.Users
@@ -174,6 +131,7 @@ namespace MappingLectureCourse.Controllers
         }
 
         [HttpPost]
+        [Authorize(Policy = "AdminAccess")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> UpdateUserInfo(string Id, ApplicationUser updateUser)
         {
@@ -197,6 +155,7 @@ namespace MappingLectureCourse.Controllers
 
 
         [HttpGet]
+        [Authorize(Policy = "RequireAccess")]
         public IActionResult ChangeUserPassword()
         {
             return View();
@@ -204,6 +163,7 @@ namespace MappingLectureCourse.Controllers
 
 
         [HttpPost]
+        [Authorize(Policy = "RequireAccess")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ChangeUserPassword(UserChangePassword userChangePassword)
         {
@@ -241,7 +201,7 @@ namespace MappingLectureCourse.Controllers
 
 
         [HttpGet]
-        [AllowAnonymous]
+        [Authorize(Policy = "AdminAccess")]
         public async Task<IActionResult> ForgotUserPassword(string Id, MessageNote? message = null)
         {
             var listuser = new ListGetAUserPassword();
@@ -259,7 +219,7 @@ namespace MappingLectureCourse.Controllers
 
 
         [HttpPost]
-        [AllowAnonymous]
+        [Authorize(Policy = "AdminAccess")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ForgotUserPassword(string Id, ListGetAUserPassword listGetAUserPassword)
         {
@@ -276,6 +236,10 @@ namespace MappingLectureCourse.Controllers
 
                 if (result.Succeeded)
                 {
+                    user.EmailConfirmed = false;
+
+                    await _userManager.UpdateAsync(user);
+
                     return RedirectToAction("ForgotUserPassword", new { id = Id, Message = MessageNote.Exist });
                 }
 

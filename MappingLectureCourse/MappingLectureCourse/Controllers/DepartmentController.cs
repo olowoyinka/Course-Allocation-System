@@ -1,5 +1,6 @@
 ﻿using MappingLectureCourse.Interface;
 using MappingLectureCourse.Models.ContentViewModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ReflectionIT.Mvc.Paging;
 using System;
@@ -7,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace MappingLectureCourse.Controllers
 {
+    [Authorize(Policy = "AdminAccess")]
     public class DepartmentController : Controller
     {
         private readonly IDepartment _departmentService;
@@ -18,7 +20,7 @@ namespace MappingLectureCourse.Controllers
 
         public async Task<IActionResult> Index(string Search, int pageindex = 1)
         {
-            var model = PagingList.Create(await _departmentService.getAllDepartment(Search), 10, pageindex);
+            var model = PagingList.Create(await _departmentService.getAllDepartment(Search), 5, pageindex);
 
             return View(model);
         }

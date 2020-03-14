@@ -1,8 +1,59 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model MappingLectureCourse.Models.UserViewModel.UserLogin
+
+@{
+    ViewData["Title"] = "LoginUser";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+@{
+    Layout = "_Open";
+}
+
+<section class="register-section container-fluid">
+    <div class="row">
+        <div class="col-lg-6 mini-background text-center">
+            <div class="background-text">
+                <h1>Unilag Course Allocation System</h1>
+                <p>Course allocation made easy with our algorithm</p>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="register-form-container">
+                <div class="register-text text-center">
+                    <h1>Sign In</h1>
+                    <p>Sign in with your registered <br> username and password</p>
+                </div>
+            </div>
+            <div class="container col-lg-8">
+                <form asp-action="Index">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="input-item-container">
+                        <p>Username</p>
+                        <input type="text" asp-for="email" class="name-text" placeholder="">
+                        <span asp-validation-for="email" class="text-danger"></span>
+                    </div>
+                    <br />
+                    <div class="input-item-container">
+                        <p>Password</p>
+                        <input type="password" asp-for="password" class="name-text" placeholder="" required>
+                        <span asp-validation-for="password" class="text-danger"></span>
+                    </div>
+                    <br />
+                    <div class="register-button text-center">
+                        <button>Sign In</button>
+                    </div>
+                    <br />
+                    <div class="account-question text-center">
+                        <p>Don't have an account? <span><a href="sign-up.html">Contact CITS</a></span></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
