@@ -39,17 +39,12 @@ namespace MappingLectureCourse.Controllers
         }
 
 
-        [HttpGet]
         public async Task<IActionResult> Index(string search, int pageindex = 1)
         {
             var user = await GetCurrentUserAsync();
 
-            var getUser = await _userManager.Users
-                        .Include(i => i.Department)
-                        .AsNoTracking()
-                .SingleOrDefaultAsync(m => m.Id == user.Id);
 
-            var courses = from m in _context.lectures
+            var lecture = from m in _context.lectures
                                    .Include(x => x.Department)
                                    .Include(l => l.Designation)
                                    .Include(s => s.LectureQualifications)
@@ -58,12 +53,14 @@ namespace MappingLectureCourse.Controllers
 
             if (!String.IsNullOrEmpty(search))
             {
-                courses = courses.Where(s => s.DepartmentID == getUser.DepartmentID
+                lecture = lecture.Where(s => s.DepartmentID == user.DepartmentID
                                     && ((s.FirstName.Contains(search)) || (s.LastName.Contains(search)) 
                                     || (s.Designation.Name.Contains(search)) ));
             }
 
-            var model = PagingList.Create(await courses.OrderByDescending(s => s.LectureID).ToListAsync(), 5, pageindex);
+            lecture = lecture.Where(s => s.DepartmentID == user.DepartmentID);
+
+            var model = PagingList.Create(await lecture.OrderByDescending(s => s.LectureID).ToListAsync(), 5, pageindex);
 
             return View(model);
         }
@@ -78,7 +75,7 @@ namespace MappingLectureCourse.Controllers
             PopulateAssignedQualificationRegister();
 
             ViewData["Exist"] =
-               message == MessageNote.Exist ? "This Lecture First Name and Last Name Already Exist"
+               message == MessageNote.Exist ? "This Lecturer First Name and Last Name Already Exist"
                : "";
 
             listItem();
@@ -131,8 +128,8 @@ namespace MappingLectureCourse.Controllers
             }
 
             ViewData["Exist"] =
-                message == MessageNote.Exist ? "New Lecture Added; Here is the Detail"
-                : message == MessageNote.Update ? "Lecture Updated; Here is the Detail"
+                message == MessageNote.Exist ? "New Lecturer Added; Here is the Detail"
+                : message == MessageNote.Update ? "Lecturer Updated; Here is the Detail"
                 : "";
 
             var getLecture = await _lectureService.getLectureById(Id);
@@ -149,7 +146,7 @@ namespace MappingLectureCourse.Controllers
             }
 
             ViewData["Exist"] =
-                message == MessageNote.Exist ? "This Lecture First Name and Last Name Already Exist"
+                message == MessageNote.Exist ? "This Lecturer First Name and Last Name Already Exist"
                 : "";
 
             var user = await GetCurrentUserAsync();
@@ -261,7 +258,7 @@ namespace MappingLectureCourse.Controllers
 
         private void PopulateAssignedResearchAreaRegister(Guid DepartmentID)
         {
-            var allresearchAreas = _context.researchAreas.Where(s => s.DepartmentID.Equals(DepartmentID));
+            var allresearchAreas = _context.researchAreas.Where(s => s.DepartmentID.Equals(DepartmentID)).OrderBy(s => s.Name);
 
             var viewResearchAreas = new List<AssignedResearchData>();
 
@@ -280,7 +277,7 @@ namespace MappingLectureCourse.Controllers
 
         private void PopulateAssignedQualificationRegister()
         {
-            var allQualification = _context.qualifications;
+            var allQualification = _context.qualifications.OrderBy(s => s.Name);
 
             var viewQualification = new List<AssignedQualificationData>();
 
@@ -299,7 +296,7 @@ namespace MappingLectureCourse.Controllers
 
         private void PopulateAssignedResearchAreaData(Lecture lecture, Guid DepartmentID)
         { 
-            var allresearchAreas = _context.researchAreas.Where(s => s.DepartmentID.Equals(DepartmentID));
+            var allresearchAreas = _context.researchAreas.Where(s => s.DepartmentID.Equals(DepartmentID)).OrderBy(s => s.Name);
 
             var lectureResearchAreas = new HashSet<Guid>(lecture.LectureResearchAreas.Select(c => c.ResearchArea.ResearchAreaID));
 
@@ -320,7 +317,7 @@ namespace MappingLectureCourse.Controllers
 
         private void PopulateAssignedQualificationData(Lecture lecture)
         {
-            var allQualification = _context.qualifications;
+            var allQualification = _context.qualifications.OrderBy(s => s.Name);
 
             var lectureQualification = new HashSet<int>(lecture.LectureQualifications.Select(c => c.Qualification.QualificationID));
 

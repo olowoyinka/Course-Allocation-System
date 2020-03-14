@@ -17,6 +17,6 @@ namespace MappingLectureCourse.Interface
 
         Task<bool> deleteResearchArea(Guid? Id);
 
-        Task<bool> checkResearchAreaExist(ResearchArea researchArea);
+        Task<bool> checkResearchAreaExist(ResearchArea researchArea, Guid DepartmentID);
     }
 }

@@ -68,7 +68,7 @@ namespace MappingLectureCourse
 
             services.AddAuthorization(options =>
             {
-                options.AddPolicy("RequireAccess", policy => policy.RequireRole("StaffUserRole").RequireAuthenticatedUser());
+                options.AddPolicy("RequireAccess", policy => policy.RequireRole("Regular").RequireAuthenticatedUser());
 
                 options.AddPolicy("AdminAccess", policy => policy.RequireRole("Admin").RequireAuthenticatedUser());
             });

@@ -6,19 +6,19 @@
 
 <div class="row">
     <div class="col-md-12">
-        <h3>Update Lecture</h3>
+        <h3>Update Lecturer</h3>
     </div>
 </div>
 <h3 class="text-danger">@ViewData["Exist"] </h3>
 <hr />
 
 <div class="row">
-    <div class="col-md-4"><a asp-action="Index" class="btn btn-primary">View List Of Lecture</a></div>
+    <div class="col-md-4"><a asp-action="Index" class="btn btn-primary">View List Of Lecturer</a></div>
 </div>
 
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-6">
         <form asp-action="Update">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="LectureID" />
@@ -57,7 +57,7 @@
 
                             foreach (var qualification in qualifications)
                             {
-                                if (cnt++ % 6 == 0)
+                                if (cnt++ % 4 == 0)
                                 {
                                 @:</tr><tr>
                                 }
@@ -85,7 +85,7 @@
 
                             foreach (var researchArea in researchAreas)
                             {
-                                if (cnts++ % 6 == 0)
+                                if (cnts++ % 2 == 0)
                                 {
                                 @:</tr><tr>
                                 }

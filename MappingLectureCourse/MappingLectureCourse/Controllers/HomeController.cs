@@ -53,12 +53,12 @@ namespace MappingLectureCourse.Controllers
                 {
                     if (!(await _userManager.IsEmailConfirmedAsync(user)))
                     {
-                        return RedirectToAction("ChangeUserPassword");
+                        return RedirectToAction(nameof(UsersController.ChangeUserPassword), "Users");
                     }
 
                     _logger.LogInformation(1, "User logged in.");
 
-                    return RedirectToAction(nameof(MappingController.Index), "Mapping");
+                    return RedirectToAction(nameof(HomeController.Welcome), "Home");
                 }
                 else
                 {
@@ -68,6 +68,12 @@ namespace MappingLectureCourse.Controllers
             }
 
             return View(userLogin);
+        }
+
+        [Authorize]
+        public IActionResult Welcome()
+        {
+            return View();
         }
 
         public IActionResult AccessDenied()

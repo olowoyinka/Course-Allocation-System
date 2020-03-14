@@ -61,10 +61,10 @@ namespace MappingLectureCourse.Services
             return deleted > 0;
         }
 
-        public async Task<bool> checkResearchAreaExist(ResearchArea researchArea)
+        public async Task<bool> checkResearchAreaExist(ResearchArea researchArea,Guid DepartmentID)
         {
             return await _context.researchAreas
-                        .AnyAsync(s => s.Name.Equals(researchArea.Name) && s.DepartmentID.Equals(researchArea.DepartmentID));
+                        .AnyAsync(s => s.Name.Equals(researchArea.Name) && s.DepartmentID.Equals(DepartmentID));
         }
     }
 }

@@ -172,3 +172,4 @@ C:\Users\olowoyinka\source\repos\MappingLectureCourse\MappingLectureCourse\obj\D
 C:\Users\olowoyinka\source\repos\MappingLectureCourse\MappingLectureCourse\obj\Debug\netcoreapp3.0\Razor\Views\Shared\_CookieConsentPartial.cshtml.g.cs
 C:\Users\olowoyinka\source\repos\MappingLectureCourse\MappingLectureCourse\obj\Debug\netcoreapp3.0\Razor\Views\Shared\_RolePartial.cshtml.g.cs
 C:\Users\olowoyinka\source\repos\MappingLectureCourse\MappingLectureCourse\obj\Debug\netcoreapp3.0\Razor\Views\Home\AccessDenied.cshtml.g.cs
+C:\Users\olowoyinka\source\repos\MappingLectureCourse\MappingLectureCourse\obj\Debug\netcoreapp3.0\Razor\Views\Home\Welcome.cshtml.g.cs

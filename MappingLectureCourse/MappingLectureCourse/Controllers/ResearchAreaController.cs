@@ -45,6 +45,8 @@ namespace MappingLectureCourse.Controllers
                                             && s.Name.Contains(search));
             }
 
+            researchAreas = researchAreas.Where(s => s.DepartmentID == user.DepartmentID);
+
             var model = PagingList.Create(await researchAreas.OrderByDescending(s => s.ResearchAreaID).ToListAsync(), 5, pageindex);
 
             return View(model);
@@ -66,11 +68,6 @@ namespace MappingLectureCourse.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(ResearchArea researchArea)
         {
-            if (await _researchAreaService.checkResearchAreaExist(researchArea))
-            {
-                return RedirectToAction("Create", new { Message = MessageNote.Exist });
-            }
-
             var user = await GetCurrentUserAsync();
 
             var addResearchArea = new ResearchArea
@@ -79,6 +76,11 @@ namespace MappingLectureCourse.Controllers
                 Name = researchArea.Name,
                 DepartmentID = user.DepartmentID
             };
+
+            if (await _researchAreaService.checkResearchAreaExist(addResearchArea, user.DepartmentID))
+            {
+                return RedirectToAction("Create", new { Message = MessageNote.Exist });
+            }
 
             await _researchAreaService.createResearchArea(addResearchArea);
 
@@ -133,7 +135,9 @@ namespace MappingLectureCourse.Controllers
                 return NotFound();
             }
 
-            if (await _researchAreaService.checkResearchAreaExist(researchArea))
+            var user = await GetCurrentUserAsync();
+
+            if (await _researchAreaService.checkResearchAreaExist(researchArea, user.DepartmentID))
             {
                 return RedirectToAction("Update", new { id = Id, Message = MessageNote.Exist });
             }

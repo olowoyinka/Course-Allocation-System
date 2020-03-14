@@ -6,16 +6,16 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>List of Lecture</h2>
+<h2>List of Lecturer</h2>
 <hr />
 
 <div class="row">
-    <div class="col-md-4 col-4"><a asp-action="Register" class="btn btn-primary">Add New Lecture</a></div>
+    <div class="col-md-4 col-4"><a asp-action="Register" class="btn btn-primary">Add New Lecturer</a></div>
     <div class="offset-3 col-md-5 col-4" style="float:right">
         <form asp-action="Index">
             <div class="row">
                 <div class="col-md-6">
-                    <input type="text" placeholder="Search ....." class="form-control" name="Search">
+                    <input type="text" placeholder="Search ....." class="form-control" name="search">
                 </div>
             </div>
         </form>
@@ -64,7 +64,7 @@
                     @Html.DisplayFor(modelItem => item.Available)
                 </td>
                 <td>
-                    <a asp-action="Update" asp-route-id="@item.LectureID">Update Lecture</a> |
+                    <a asp-action="Update" asp-route-id="@item.LectureID">Update Lecturer</a> |
                     <a asp-action="Detail" asp-route-id="@item.LectureID">View Detail</a> 
                 </td>
             </tr>

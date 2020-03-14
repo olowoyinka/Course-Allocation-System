@@ -87,7 +87,7 @@ namespace MappingLectureCourse.Controllers
 
                 if (result.Succeeded)
                 {
-                    await _userManager.AddToRoleAsync(user, "StaffUserRole" );
+                    await _userManager.AddToRolesAsync(user, new[] { "Regular" });
 
                     _logger.LogInformation(3, "User Created a New Account With Password.");
 
@@ -188,7 +188,7 @@ namespace MappingLectureCourse.Controllers
 
                     _logger.LogInformation(3, "User changed their password successfully.");
 
-                    return RedirectToAction(nameof(MappingController.Index), "Mapping", new { Message = MessageNote.Exist });
+                    return RedirectToAction(nameof(HomeController.Welcome), "Home", new { Message = MessageNote.Exist });
                 }
 
                 AddErrors(result);
