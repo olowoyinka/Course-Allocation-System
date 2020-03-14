@@ -1,0 +1,64 @@
+﻿@model MappingLectureCourse.Models.UserViewModel.UserRegister
+
+
+@{
+    ViewData["Title"] = "RegisterUser";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <h3>Add New User</h3>
+    </div>
+</div>
+
+<hr />
+<h3 class="text-danger">@ViewData["Exist"]</h3>
+<div class="row">
+    <div class="col-md-4"><a asp-action="Index" class="btn btn-primary">View List Of User</a></div>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="RegisterUser">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label"></label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastName" class="control-label"></label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="password" class="control-label"></label>
+                <input asp-for="password" class="form-control" />
+                <span asp-validation-for="password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="confirmPassword" class="control-label"></label>
+                <input asp-for="confirmPassword" class="form-control" />
+                <span asp-validation-for="confirmPassword" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DepartmentID" class="control-label"></label>
+                <select asp-for="DepartmentID" class="form-control" asp-items="ViewBag.DepartmentID"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Register" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

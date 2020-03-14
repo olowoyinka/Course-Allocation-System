@@ -1,0 +1,78 @@
+﻿@using ReflectionIT.Mvc.Paging
+@addTagHelper *, ReflectionIT.Mvc.Paging
+@model PagingList<MappingLectureCourse.Models.MappingViewModel.Lecture>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>List of Lecture</h2>
+<hr />
+
+<div class="row">
+    <div class="col-md-4 col-4"><a asp-action="Register" class="btn btn-primary">Add New Lecture</a></div>
+    <div class="col-md-7 col-7" style="float:right">
+        <form asp-action="Index">
+            <div class="row">
+                <div class="col-md-6">
+                    <input type="text" placeholder="Search ....." class="form-control" name="Search">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<hr />
+
+
+<nav aria-label="Products navigation example">
+    <vc:pager paging-list="@Model"></vc:pager>
+</nav>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Designation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Available)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Designation.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Available)
+                </td>
+                <td>
+                    <a asp-action="Update" asp-route-id="@item.LectureID">Update Lecture</a> |
+                    <a asp-action="Detail" asp-route-id="@item.LectureID">View Detail</a> |
+                    <a asp-action="Delete" asp-route-id="@item.LectureID">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<nav aria-label="Products navigation example">
+    <vc:pager paging-list="@Model" />
+</nav>

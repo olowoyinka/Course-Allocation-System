@@ -1,0 +1,68 @@
+﻿@model MappingLectureCourse.Models.MappingViewModel.Course
+
+@{
+    ViewData["Title"] = "Update";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <h3>Update Course</h3>
+    </div>
+</div>
+<h3 class="text-danger">@ViewData["Exist"] </h3>
+<hr />
+
+<div class="row">
+    <div class="col-md-4"><a asp-action="Index" class="btn btn-primary">View List Of Course</a></div>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Update">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="CourseID" />
+            <div class="form-group">
+                <label asp-for="CourseCode" class="control-label"></label>
+                <input asp-for="CourseCode" class="form-control" />
+                <span asp-validation-for="CourseCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CourseTitle" class="control-label"></label>
+                <input asp-for="CourseTitle" class="form-control" />
+                <span asp-validation-for="CourseTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CourseUnit" class="control-label"></label>
+                <input asp-for="CourseUnit" class="form-control" />
+                <span asp-validation-for="CourseUnit" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LevelID" class="control-label"></label>
+                <select asp-for="LevelID" class="form-control" asp-items="ViewBag.LevelID"></select>
+                <span asp-validation-for="LevelID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ResearchAreaID" class="control-label"></label>
+                <select asp-for="ResearchAreaID" class="form-control" asp-items="ViewBag.ResearchAreaID"></select>
+                <span asp-validation-for="ResearchAreaID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SemesterID" class="control-label"></label>
+                <select asp-for="SemesterID" class="form-control" asp-items="ViewBag.SemesterID"></select>
+                <span asp-validation-for="SemesterID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <select hidden asp-for="DepartmentID" class="form-control" asp-items="ViewBag.DepartmentID"></select>
+                <span asp-validation-for="DepartmentID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Update Course" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

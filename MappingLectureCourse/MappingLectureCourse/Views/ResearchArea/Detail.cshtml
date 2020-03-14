@@ -1,0 +1,40 @@
+﻿@model MappingLectureCourse.Models.MappingViewModel.ResearchArea
+
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<h3>Detail of the Research Area</h3>
+
+<br />
+
+<h3 class="text-danger">@ViewData["Exist"]</h3>
+
+<hr />
+
+<div class="row">
+    <div class="col-md-4 col-4"><a asp-action="Index" class="btn btn-primary">List of Research Area</a></div>
+    <div class="col-md-4 col-4"><a asp-action="Update" asp-route-id="@Model.ResearchAreaID" class="btn btn-primary">Update the Research Area</a></div>
+</div>
+
+<hr />
+
+<div>
+    <h4>ResearchArea</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Department)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Department.Name)
+        </dd>
+    </dl>
+</div>
+

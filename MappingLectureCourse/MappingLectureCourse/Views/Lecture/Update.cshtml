@@ -1,0 +1,112 @@
+﻿@model MappingLectureCourse.Models.MappingViewModel.Lecture
+
+@{
+    ViewData["Title"] = "Update";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <h3>Update Lecture</h3>
+    </div>
+</div>
+<h3 class="text-danger">@ViewData["Exist"] </h3>
+<hr />
+
+<div class="row">
+    <div class="col-md-4"><a asp-action="Index" class="btn btn-primary">View List Of Lecture</a></div>
+</div>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Update">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="LectureID" />
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label"></label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastName" class="control-label"></label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DesignationID" class="control-label"></label>
+                <select asp-for="DesignationID" class="form-control" asp-items="ViewBag.DesignationID"></select>
+                <span asp-validation-for="DesignationID" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Available" /> @Html.DisplayNameFor(model => model.Available)
+                </label>
+            </div>
+            <div class="form-group">
+                <select hidden asp-for="DepartmentID" class="form-control" asp-items="ViewBag.DepartmentID"></select>
+            </div>
+            <hr />
+            <h3>Lecturer Qualification</h3>
+            <div class="form-group">
+                <table>
+                    <tr>
+                        @{
+                            int cnt = 0;
+                            List<MappingLectureCourse.Models.EntryViewModel.AssignedQualificationData> qualifications =
+                            ViewBag.Qualification;
+
+                            foreach (var qualification in qualifications)
+                            {
+                                if (cnt++ % 6 == 0)
+                                {
+                                @:</tr><tr>
+                                }
+                                @:<td>
+                                    <input type="checkbox"
+                                           name="selectedQualification"
+                                           value="@qualification.QualificationID"
+                                           @(Html.Raw(qualification.Assigned ? "checked=\"checked\"" : "")) />
+                                    @qualification.Name
+                                @:</td>
+                            }
+                            @:</ tr >
+                        }
+                </table>
+            </div>
+            <hr />
+            <h3>Research Area</h3>
+            <div class="form-group">
+                <table>
+                    <tr>
+                        @{
+                            int cnts = 0;
+                            List<MappingLectureCourse.Models.EntryViewModel.AssignedResearchData> researchAreas =
+                            ViewBag.ResearchAreas;
+
+                            foreach (var researchArea in researchAreas)
+                            {
+                                if (cnts++ % 6 == 0)
+                                {
+                                @:</tr><tr>
+                                }
+                                @:<td>
+                                    <input type="checkbox"
+                                           name="selectedResearch"
+                                           value="@researchArea.ResearchAreaID"
+                                           @(Html.Raw(researchArea.Assigned ? "checked=\"checked\"" : "")) />
+                                    @researchArea.Name
+                                @:</td>
+                            }
+                            @:</ tr >
+                        }
+                </table>
+            </div>
+            <hr/>
+            <div class="form-group">
+                <input type="submit" value="Update Lecture Profile" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<hr />

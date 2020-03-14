@@ -1,0 +1,77 @@
+﻿@model MappingLectureCourse.Models.EntryViewModel.PrintMapping
+
+@{
+    Layout = "_Open";
+}
+
+@{
+    ViewData["Title"] = "Course Allocation";
+}
+
+
+<br />
+<br />
+
+<div class="row">
+    <div class="col-md-2 col-2 col-sm-2">
+        @*<img src="~/images/logo.jpg" height="150" width="130" class="rounded float-left" alt="...">*@
+        @*<img height="100" width="100em" src="~/images/logo.jpg" />*@
+    </div>
+    <div class="col-md-10 col-10 col-sm-10" style="text-align:center">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="text-center">UNIVERSITY OF LAGOS</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <h3 class="text-center">Course Allocation For @Model.Department</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-6 col-sm-6" style="padding-left:0px">
+                <h4>Semester :  @Model.Semester</h4>
+            </div>
+            <div class="col-md-6 col-6 col-sm-6">
+                <h4>Session  :  @Model.Session</h4>
+            </div>
+        </div>
+    </div>
+</div>
+
+<hr />
+
+@foreach (var level in Model.levels)
+{
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item active" aria-current="page"><b style="color:black">@level.LevelName LEVEL</b></li>
+        </ol>
+    </nav>
+
+    <div style="margin-left:30px; margin-bottom: 20px; text-align:center ; margin-right: 10px" class="row">
+        @foreach (var course in Model.courses.Where(s => s.Level.LevelID.Equals(level.LevelID)))
+        {
+            <div class="col-md-4 col-4 col-sm-4">
+                <div class="row">
+                    <h4><u>@course.CourseCode - @course.CourseTitle</u></h4>
+                </div>
+
+                @foreach (var listlecture in Model.lectureCourses.Where(s => s.CourseID.Equals(course.CourseID)))
+                {
+                    <div class="row" style="text-align:center">
+                        <h6> @listlecture.Lecture.FirstName @listlecture.Lecture.LastName - (@listlecture.Lecture.Designation.Name) </h6>
+                    </div>
+                }
+            </div>
+
+        }
+    </div>
+
+}
+
+<hr />
+
+<div class="row">
+    <div class="col-md-6 col-xs-4"><a asp-action="Index" class="btn btn-primary">Back Home</a></div>
+</div>

@@ -1,0 +1,75 @@
+﻿@using ReflectionIT.Mvc.Paging
+@addTagHelper *, ReflectionIT.Mvc.Paging
+@model PagingList<MappingLectureCourse.Data.ApplicationUser>
+
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>List of Users</h2>
+<hr />
+
+<div class="row">
+    <div class="col-md-4 col-4"><a asp-action="RegisterUser" class="btn btn-primary">Add New Users</a></div>
+    <div class="col-md-7 col-7" style="float:right">
+        <form asp-action="Index">
+            <div class="row">
+                <div class="col-md-6">
+                    <input type="text" placeholder="Search ....." class="form-control" name="Search">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<hr />
+
+<nav aria-label="Products navigation example">
+    <vc:pager paging-list="@Model"></vc:pager>
+</nav>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                Department Name
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Department.Name)
+                </td>
+                <td>
+                    <a asp-action="ForgotUserPassword" asp-route-id="@item.Id">Forgot Password</a> |
+                    <a asp-action="UpdateUserInfo" asp-route-id="@item.Id">Update User Profile</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<nav aria-label="Products navigation example">
+    <vc:pager paging-list="@Model"></vc:pager>
+</nav>

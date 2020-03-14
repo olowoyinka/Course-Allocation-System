@@ -1,0 +1,69 @@
+﻿@model MappingLectureCourse.Models.MappingViewModel.Lecture
+
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<h3>Detail of the Course</h3>
+
+
+<h3 class="text-danger">@ViewData["Exist"]</h3>
+
+<hr />
+
+<div class="row">
+    <div class="col-md-4 col-4"><a asp-action="Index" class="btn btn-primary">List of Lectures</a></div>
+    <div class="col-md-4 col-4"><a asp-action="Update" asp-route-id="@Model.LectureID" class="btn btn-primary">Update the Lectures</a></div>
+</div>
+
+<hr />
+
+<div>
+    <h4>Lecture</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Available)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Available)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Designation)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Designation.Name)
+        </dd>
+        <dt class="col-sm-2">
+            Area of Research
+        </dt>
+        <dd class="col-sm-10">
+            @foreach (var item in Model.LectureResearchAreas)
+            {
+                @item.ResearchArea.Name <br/>
+            }
+        </dd>
+        <dt class="col-sm-2">
+            Qualification
+        </dt>
+        <dd class="col-sm-10">
+            @foreach (var item in Model.LectureQualifications)
+            {
+                @item.Qualification.Name <br/>
+            }
+        </dd>
+    </dl>
+</div>
+
