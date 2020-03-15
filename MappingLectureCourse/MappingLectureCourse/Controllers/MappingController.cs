@@ -41,7 +41,7 @@ namespace MappingLectureCourse.Controllers
             _mappingService = mappingService;
         }
 
-        public IActionResult Index(MessageNote? message = null)
+        public IActionResult Mapping(MessageNote? message = null)
         {
             ViewData["Exist"] =
                message == MessageNote.Exist ? "Your Password Has Been Changed. Welcome to Unilag Course Allocation System"
@@ -170,7 +170,7 @@ namespace MappingLectureCourse.Controllers
                 await _mappingService.createListLectureCourse(getUser.DepartmentID, SessionValue);
             }
 
-            return RedirectToAction("HistoryofMapping", new { Message = MessageNote.Exist });
+            return RedirectToAction("Index", new { Message = MessageNote.Exist });
         }
 
 
@@ -224,8 +224,7 @@ namespace MappingLectureCourse.Controllers
         }
 
 
-        [HttpGet]
-        public async Task<IActionResult> HistoryofMapping(int pageindex = 1, MessageNote? message = null)
+        public async Task<IActionResult> Index(int pageindex = 1, MessageNote? message = null)
         {
             var user = await GetCurrentUserAsync();
 
@@ -234,7 +233,7 @@ namespace MappingLectureCourse.Controllers
                 message == MessageNote.Add ? "Select One of the Record"
                 : "";
 
-            var model = PagingList.Create(await _mappingService.HistoyofMapping(user.DepartmentID), 10, pageindex);
+            var model = PagingList.Create(await _mappingService.HistoyofMapping(user.DepartmentID), 5, pageindex);
 
             return View(model);
         }

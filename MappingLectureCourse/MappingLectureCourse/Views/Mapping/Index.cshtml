@@ -1,13 +1,68 @@
-﻿
+﻿@using ReflectionIT.Mvc.Paging
+@addTagHelper *, ReflectionIT.Mvc.Paging
+@model PagingList<MappingLectureCourse.Models.MappingViewModel.ListLectureCourse>
+
+
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "HistoryofMapping";
 }
 
-<h1>GENERATE COURSE ALLOCATION FOR YOUR DEPARTMENT</h1>
+<h3> Record of Course Allocation </h3>
+
+<hr />
+<h3 class="text-danger">@ViewData["Exist"]</h3>
+
+<div class="row">
+    <div class="col-md-4 col-4"><a asp-action="Mapping" class="btn btn-primary">Back Home</a></div>
+    <div class="offset-4 col-md-4 col-4"><a asp-action="GenerateMapping" class="btn btn-primary">Generate Course Allocation</a></div>
+</div>
 
 <hr />
 
-<div class="row">
-    <div class="col-md-4 col-4"><a asp-action="GenerateMapping" class="btn btn-primary">Generate Course Allocation</a></div>
-    <div class="offset-4 col-md-4 col-4"><a asp-action="HistoryofMapping" class="btn btn-primary">Record of Course Allocation</a></div>
-</div>
+<nav aria-label="Products navigation example">
+    <vc:pager paging-list="@Model" />
+</nav>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Session
+            </th>
+            <th>
+                Semester
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Session.SessionName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Semester.Name)
+                </td>
+                <td>
+                </td>
+                <td>
+                    <form asp-action="PrintMapping">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <input type="text" hidden value="@item.Semester.Name" class="form-control" name="semesterID">
+                                <input type="text" hidden value="@item.Session.SessionName" class="form-control" name="SessionID">
+                            </div>
+                            <div class="col-md-4">
+                                <input type="submit" value="View Course Allocation" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<nav aria-label="Products navigation example">
+    <vc:pager paging-list="@Model" />
+</nav>
+

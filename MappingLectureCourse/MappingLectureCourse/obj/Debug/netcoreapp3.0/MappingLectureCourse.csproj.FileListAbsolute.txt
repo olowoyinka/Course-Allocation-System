@@ -129,7 +129,6 @@ C:\Users\olowoyinka\source\repos\MappingLectureCourse\MappingLectureCourse\obj\D
 C:\Users\olowoyinka\source\repos\MappingLectureCourse\MappingLectureCourse\obj\Debug\netcoreapp3.0\Razor\Views\Lecture\Register.cshtml.g.cs
 C:\Users\olowoyinka\source\repos\MappingLectureCourse\MappingLectureCourse\obj\Debug\netcoreapp3.0\Razor\Views\Lecture\Update.cshtml.g.cs
 C:\Users\olowoyinka\source\repos\MappingLectureCourse\MappingLectureCourse\obj\Debug\netcoreapp3.0\Razor\Views\Mapping\GenerateMapping.cshtml.g.cs
-C:\Users\olowoyinka\source\repos\MappingLectureCourse\MappingLectureCourse\obj\Debug\netcoreapp3.0\Razor\Views\Mapping\HistoryofMapping.cshtml.g.cs
 C:\Users\olowoyinka\source\repos\MappingLectureCourse\MappingLectureCourse\obj\Debug\netcoreapp3.0\Razor\Views\Mapping\Index.cshtml.g.cs
 C:\Users\olowoyinka\source\repos\MappingLectureCourse\MappingLectureCourse\obj\Debug\netcoreapp3.0\Razor\Views\ResearchArea\Create.cshtml.g.cs
 C:\Users\olowoyinka\source\repos\MappingLectureCourse\MappingLectureCourse\obj\Debug\netcoreapp3.0\Razor\Views\ResearchArea\Detail.cshtml.g.cs
@@ -173,3 +172,4 @@ C:\Users\olowoyinka\source\repos\MappingLectureCourse\MappingLectureCourse\obj\D
 C:\Users\olowoyinka\source\repos\MappingLectureCourse\MappingLectureCourse\obj\Debug\netcoreapp3.0\Razor\Views\Shared\_RolePartial.cshtml.g.cs
 C:\Users\olowoyinka\source\repos\MappingLectureCourse\MappingLectureCourse\obj\Debug\netcoreapp3.0\Razor\Views\Home\AccessDenied.cshtml.g.cs
 C:\Users\olowoyinka\source\repos\MappingLectureCourse\MappingLectureCourse\obj\Debug\netcoreapp3.0\Razor\Views\Home\Welcome.cshtml.g.cs
+C:\Users\olowoyinka\source\repos\MappingLectureCourse\MappingLectureCourse\obj\Debug\netcoreapp3.0\Razor\Views\Mapping\Mapping.cshtml.g.cs

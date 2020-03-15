@@ -50,12 +50,12 @@ namespace MappingLectureCourse.Services
 
         public Guid lastValueofSession()
         {
-            return  _context.sessions.OrderByDescending(s => s.SessionID).FirstOrDefault().SessionID;
+            return  _context.sessions.OrderByDescending(s => s.SessionName).FirstOrDefault().SessionID;
         }
 
         public string lastNameofSession()
         {
-            return _context.sessions.OrderByDescending(s => s.SessionID).FirstOrDefault().SessionName;
+            return _context.sessions.OrderByDescending(s => s.SessionName).FirstOrDefault().SessionName;
         }
 
         public async Task<List<ListLectureCourse>> HistoyofMapping(Guid DepartmentID)

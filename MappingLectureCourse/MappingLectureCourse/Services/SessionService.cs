@@ -44,7 +44,7 @@ namespace MappingLectureCourse.Services
 
         public async Task<List<Session>> getAllSession()
         { 
-            return await _context.sessions.OrderByDescending(s => s.SessionID).ToListAsync();
+            return await _context.sessions.OrderByDescending(s => s.SessionName).ToListAsync();
         }
 
         public async Task<Session> getSessionById(Guid? Id)
